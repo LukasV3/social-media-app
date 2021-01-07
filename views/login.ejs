@@ -29,19 +29,22 @@
     </style>
   </head>
   <body>
-    <form class="form">
+    <form class="form login-form">
       <h1>Login</h1>
 
       <div class="form-group">
         <label for="username">Username</label>
-        <input required type="text" name="username" id="username" />
+        <input required value="" type="text" name="username" id="username" />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
         <input required type="password" name="password" id="password" />
       </div>
-      <a href="/" class="login-btn">Login</a>
+      <!-- <a href="/" class="login-btn">Login</a> -->
+      <button class="login-btn">Login</button>
     </form>
     <a href="/signup">Dont have an account?</a>
+
+    <script src="bundle.js"></script>
   </body>
 </html>
