@@ -7,7 +7,10 @@ const userRouter = require("./routes/userRoutes");
 const app = express();
 
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
+
+// Reading data from req.body
+app.use(express.json({ limit: "10kb" }));
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 if (process.env === "development") {
   app.use(morgan("dev"));
@@ -29,6 +32,7 @@ app.use((err, req, res, next) => {
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,
+    // stack: err.stack,
   });
 });
 

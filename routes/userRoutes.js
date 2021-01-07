@@ -5,7 +5,7 @@ const router = express.Router();
 
 // api/v1/users/...
 
-router.route("/").get(userController.getAllUsers).patch(userController.createUser);
+router.route("/").get(userController.getAllUsers).post(userController.createUser);
 router
   .route("/:id")
   .get(userController.getUser)
