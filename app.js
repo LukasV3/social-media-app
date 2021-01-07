@@ -6,7 +6,6 @@ const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
-// Middlewares
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
@@ -22,7 +21,7 @@ app.all("*", (req, res, next) => {
   next(new AppError(`Cant find ${req.originalUrl} on this server`, 404));
 });
 
-// Global error handling middleware
+// Global error handling
 app.use((err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
