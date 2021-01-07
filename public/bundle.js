@@ -8433,26 +8433,26 @@ var login = /*#__PURE__*/function () {
 
           case 3:
             res = _context.sent;
-            console.log(res);
 
+            // axios will put data object keys on req.body
             if (res.data.status === "success") {
               location.assign("/feed");
             }
 
-            _context.next = 11;
+            _context.next = 10;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function login(_x, _x2) {
@@ -8730,7 +8730,6 @@ if (loginFormEl) {
     e.preventDefault();
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    console.log(username);
     (0, _login.login)(username, password);
   });
 }

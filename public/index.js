@@ -11,7 +11,6 @@ if (loginFormEl) {
     e.preventDefault();
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
-    console.log(username);
     login(username, password);
   });
 }

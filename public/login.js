@@ -10,8 +10,7 @@ export const login = async (username, password) => {
         password,
       },
     });
-
-    console.log(res);
+    // axios will put data object keys on req.body
 
     if (res.data.status === "success") {
       location.assign("/feed");
