@@ -51,3 +51,12 @@ module.exports.login = catchAsync(async (req, res, next) => {
   // If everythings therefore ok send token to client
   createSendToken(user, 200, res);
 });
+
+module.exports.signup = catchAsync(async (req, res, next) => {
+  const newUser = await User.create({
+    username: req.body.username,
+    password: req.body.password,
+  });
+
+  createSendToken(newUser, 201, res);
+});

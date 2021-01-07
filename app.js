@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 const AppError = require("./utils/appError");
 const userRouter = require("./routes/userRoutes");
@@ -11,6 +12,7 @@ app.set("view engine", "ejs");
 // Reading data from req.body
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(cookieParser());
 
 if (process.env === "development") {
   app.use(morgan("dev"));
