@@ -8526,7 +8526,7 @@ var signup = /*#__PURE__*/function () {
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            (0, _alerts.showAlert)("error", "Username already exists. Please try again!");
+            (0, _alerts.showAlert)("error", "Username already exists!");
 
           case 10:
           case "end":
