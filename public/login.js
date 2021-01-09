@@ -43,6 +43,6 @@ export const signup = async (username, password) => {
       }, 1500);
     }
   } catch (err) {
-    showAlert("error", "Please try again!");
+    showAlert("error", "Username already exists. Please try again!");
   }
 };

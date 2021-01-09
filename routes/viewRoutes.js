@@ -5,8 +5,8 @@ const viewsController = require("../controllers/viewsController");
 const router = express.Router();
 
 router.get("/", authController.isLoggedIn, viewsController.getLoginForm);
-
 router.get("/signup", viewsController.getSignupForm);
+
 router.get("/feed", authController.isLoggedIn, viewsController.getFeed);
 
 // router.get("/", authController.isLoggedIn, viewsController.getFeed);
