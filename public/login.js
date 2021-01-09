@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showAlert } from "./alerts";
 
 export const login = async (username, password) => {
   try {
@@ -13,9 +14,12 @@ export const login = async (username, password) => {
     // axios will put data object keys on req.body
 
     if (res.data.status === "success") {
-      location.assign("/feed");
+      showAlert("success", "Logged in successfully!");
+      window.setTimeout(() => {
+        location.assign("/feed");
+      }, 1500);
     }
   } catch (err) {
-    console.log(err);
+    showAlert("error", "Please try again!");
   }
 };
