@@ -15,7 +15,6 @@ export const createPost = async (username, content) => {
     // axios will put data object keys on req.body
     if (res.data.status === "success") {
       //   showAlert("success", "You have successfully created an account!");
-
       location.assign("/feed");
     }
   } catch (err) {}
