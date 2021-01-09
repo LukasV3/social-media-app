@@ -11,7 +11,6 @@ module.exports.getLoginForm = (req, res, next) => {
 };
 
 module.exports.getFeed = (req, res, next) => {
-  // res.send(`THIS IS YOUR FEED ${username}`);
   res.status(200).render("feed", { user: res.locals.user });
 };
 
