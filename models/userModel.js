@@ -11,6 +11,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a password"],
     },
+    following: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
+    // followers: [
+    //   {
+    //     type: mongoose.Schema.ObjectId,
+    //     ref: "User",
+    //   },
+    // ],
   },
   {
     toJSON: { virtuals: true },
@@ -27,9 +39,18 @@ userSchema.virtual("posts", {
 
 // Query Middleware
 userSchema.pre(/^find/, function (next) {
-  this.populate("posts");
-
+  this.populate("following", "username");
   next();
 });
+
+userSchema.pre(/^find/, function (next) {
+  this.populate("posts");
+  next();
+});
+
+// userSchema.pre(/^find/, function (next) {
+//   this.populate({ path: "followers", select: "username" });
+//   next();
+// });
 
 module.exports = mongoose.model("User", userSchema);
