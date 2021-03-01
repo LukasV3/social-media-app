@@ -3,7 +3,7 @@ import "./styles.scss";
 
 import history from "../../history";
 
-const AuthForm = ({ type }) => {
+const AuthForm = ({ type, onSubmitButtonClick }) => {
   const [usernameTerm, setUsernameTerm] = useState("");
   const [passwordTerm, setPasswordTerm] = useState("");
 
@@ -13,10 +13,10 @@ const AuthForm = ({ type }) => {
       : setPasswordTerm(e.target.value);
   };
 
-  const onSubmitButtonClick = (e) => {
-    e.preventDefault();
-    console.log(usernameTerm, passwordTerm);
-  };
+  // const onSubmitButtonClick = (e) => {
+  //   e.preventDefault();
+  //   console.log(usernameTerm, passwordTerm);
+  // };
 
   const onAccountButtonClick = (e) => {
     e.preventDefault();
@@ -53,7 +53,13 @@ const AuthForm = ({ type }) => {
           />
         </div>
 
-        <button onClick={onSubmitButtonClick}>{type}</button>
+        <button
+          onClick={(e) =>
+            onSubmitButtonClick(e, { username: usernameTerm, password: passwordTerm })
+          }
+        >
+          {type}
+        </button>
         <hr />
 
         <button onClick={onAccountButtonClick}>
