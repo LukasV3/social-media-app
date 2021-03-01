@@ -15,8 +15,4 @@ const Login = ({ login }) => {
   return <AuthForm type="Log In" onSubmitButtonClick={logUserIn} />;
 };
 
-const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn };
-};
-
-export default connect(mapStateToProps, { login })(Login);
+export default connect(null, { login })(Login);

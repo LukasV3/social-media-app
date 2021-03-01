@@ -1,4 +1,4 @@
-import { LOGIN } from "../actions/types";
+import { LOGIN, SIGNUP } from "../actions/types";
 
 const initalState = {
   isSignedIn: null,
@@ -8,6 +8,8 @@ const initalState = {
 const authReducer = (state = initalState, action) => {
   switch (action.type) {
     case LOGIN:
+      return { ...state, isSignedIn: true, user: action.payload };
+    case SIGNUP:
       return { ...state, isSignedIn: true, user: action.payload };
     default:
       return state;
