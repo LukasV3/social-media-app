@@ -3,8 +3,8 @@ import "./styles.scss";
 
 import AuthForm from "../authForm/AuthForm";
 
-const Login = () => {
-  return <AuthForm type="Log In" />;
+const SignUp = () => {
+  return <AuthForm type="Sign Up" />;
 };
 
-export default Login;
+export default SignUp;
