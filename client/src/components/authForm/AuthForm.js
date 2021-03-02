@@ -21,46 +21,41 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
 
   return (
     <div className="authForm">
-      <h5>{type}</h5>
-      <form className="">
-        <div className="">
-          <label htmlFor="Username">Username</label>
+      <div className="authForm__container">
+        <h2 className="authForm__title">{type}</h2>
+        <form className="authForm__form">
           <input
             type="text"
             value={usernameTerm}
             onChange={(e) => onInputChange(e, "username")}
-            className=""
+            className="authForm__form--input"
             placeholder="Username"
             required
             autoFocus
           />
-        </div>
 
-        <div className="">
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             value={passwordTerm}
             onChange={(e) => onInputChange(e, "password")}
-            className=""
+            className="authForm__form--input"
             placeholder="Password"
             required
           />
-        </div>
 
-        <button
-          onClick={(e) =>
-            onSubmitButtonClick(e, { username: usernameTerm, password: passwordTerm })
-          }
-        >
-          {type}
-        </button>
-        <hr />
-
-        <button onClick={onAccountButtonClick}>
+          <button
+            className="authForm__form--submit-btn"
+            onClick={(e) =>
+              onSubmitButtonClick(e, { username: usernameTerm, password: passwordTerm })
+            }
+          >
+            {type}
+          </button>
+        </form>
+        <button className="authForm__toggle-btn" onClick={onAccountButtonClick}>
           {`${type === "Log In" ? "Dont" : "Already"} have an account? `}
         </button>
-      </form>
+      </div>
     </div>
   );
 };

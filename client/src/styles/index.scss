@@ -1,4 +1,11 @@
 @import "./global/index.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;900&display=swap");
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ddd;
+}
 
 .alert {
   position: fixed;
