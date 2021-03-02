@@ -1,18 +1,16 @@
-import { LOGIN, SIGNUP, GET_USER } from "../actions/types";
+import { LOGIN, SIGNUP } from "../actions/types";
 
 const initalState = {
   isSignedIn: null,
-  user: null,
+  userId: null,
 };
 
 const authReducer = (state = initalState, action) => {
   switch (action.type) {
     case LOGIN:
-      return { ...state, isSignedIn: true, user: action.payload };
+      return { ...state, isSignedIn: true, userId: action.payload };
     case SIGNUP:
-      return { ...state, isSignedIn: true, user: action.payload };
-    case GET_USER:
-      return { ...state, user: action.payload };
+      return { ...state, isSignedIn: true, userId: action.payload };
     default:
       return state;
   }

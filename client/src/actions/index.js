@@ -8,7 +8,7 @@ export const login = (formValues) => {
 
     dispatch({
       type: LOGIN,
-      payload: res.data.data,
+      payload: res.data.data.id,
     });
 
     if (res.data.status === "success") {
@@ -23,7 +23,7 @@ export const signup = (formValues) => {
 
     dispatch({
       type: SIGNUP,
-      payload: res.data.data,
+      payload: res.data.data.id,
     });
 
     if (res.data.status === "success") {
@@ -40,7 +40,7 @@ export const createPost = (userContent) => {
 
     dispatch({
       type: CREATE_POST,
-      payload: res.data,
+      payload: res.data.data,
     });
   };
 };

@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import "./styles.scss";
 import { createPost, getUser } from "../../actions";
 
-const Feed = ({ currentUser, createPost, getUser }) => {
+const Feed = ({ auth, currentUser, createPost, getUser }) => {
   useEffect(() => {
     // get user data
-    getUser(currentUser?.id);
-  }, [getUser, currentUser?.id]);
+    if (auth.isSignedIn) {
+      getUser(auth.userId);
+    }
+  }, [getUser, auth]);
 
   const [postText, setPostText] = useState("");
 
@@ -17,7 +19,6 @@ const Feed = ({ currentUser, createPost, getUser }) => {
 
   const onPostClick = (e) => {
     e.preventDefault();
-    console.log(currentUser.username, postText);
     createPost({ username: currentUser.username, content: postText });
     setPostText("");
   };
@@ -41,7 +42,7 @@ const Feed = ({ currentUser, createPost, getUser }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.auth.user };
+  return { auth: state.auth, currentUser: state.currentUser };
 };
 
 export default connect(mapStateToProps, { createPost, getUser })(Feed);
