@@ -9,7 +9,6 @@ const Login = ({ login }) => {
   const logUserIn = (e, formValues) => {
     e.preventDefault();
     login(formValues);
-    console.log(formValues);
   };
 
   return <AuthForm type="Log In" onSubmitButtonClick={logUserIn} />;

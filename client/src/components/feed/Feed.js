@@ -7,7 +7,7 @@ const Feed = ({ currentUser, createPost, getUser }) => {
   useEffect(() => {
     // get user data
     getUser(currentUser?.id);
-  }, [getUser, currentUser.id]);
+  }, [getUser, currentUser?.id]);
 
   const [postText, setPostText] = useState("");
 
@@ -22,11 +22,20 @@ const Feed = ({ currentUser, createPost, getUser }) => {
     setPostText("");
   };
 
+  const renderPosts = () => {
+    if (currentUser) {
+      return currentUser.posts.map((post, i) => <p key={i}>{post.content}</p>);
+    }
+
+    return <p>No posts</p>;
+  };
+
   return (
     <div>
       <h1>Username: {currentUser?.username}</h1>
       <textarea value={postText} onChange={onInputChange}></textarea>
       <button onClick={onPostClick}>Share</button>
+      {renderPosts()}
     </div>
   );
 };
