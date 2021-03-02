@@ -13,7 +13,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
-        <Route path="/feed" exact component={Feed} />
+        <Route path="/:id/feed" exact component={Feed} />
       </Switch>
     </Router>
   );

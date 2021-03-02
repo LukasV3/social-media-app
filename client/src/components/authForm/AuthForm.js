@@ -13,11 +13,6 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
       : setPasswordTerm(e.target.value);
   };
 
-  // const onSubmitButtonClick = (e) => {
-  //   e.preventDefault();
-  //   console.log(usernameTerm, passwordTerm);
-  // };
-
   const onAccountButtonClick = (e) => {
     e.preventDefault();
 

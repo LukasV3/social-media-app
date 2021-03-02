@@ -4,12 +4,18 @@ import "./styles.scss";
 import { createPost, getUser } from "../../actions";
 
 const Feed = ({ auth, currentUser, createPost, getUser }) => {
+  const storedJwt = localStorage.getItem("token");
+
   useEffect(() => {
     // get user data
     if (auth.isSignedIn) {
       getUser(auth.userId);
+    } // see if they have a jwt and get user
+    // get user from url??
+    else {
     }
-  }, [getUser, auth]);
+    console.log(storedJwt);
+  }, [getUser, auth, storedJwt]);
 
   const [postText, setPostText] = useState("");
 
@@ -24,7 +30,7 @@ const Feed = ({ auth, currentUser, createPost, getUser }) => {
   };
 
   const renderPosts = () => {
-    if (currentUser) {
+    if (currentUser && currentUser.posts.length > 0) {
       return currentUser.posts.map((post, i) => <p key={i}>{post.content}</p>);
     }
 

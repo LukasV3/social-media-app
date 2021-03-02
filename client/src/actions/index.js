@@ -12,7 +12,7 @@ export const login = (formValues) => {
     });
 
     if (res.data.status === "success") {
-      history.push("/feed");
+      history.push(`/${res.data.data.username}/feed`);
     }
   };
 };
@@ -27,21 +27,8 @@ export const signup = (formValues) => {
     });
 
     if (res.data.status === "success") {
-      history.push("/feed");
+      history.push(`/${res.data.data.username}/feed`);
     }
-  };
-};
-
-// HAVENT YET CREATED REDUCERS FOR THESE ACTION CREATORS??
-
-export const createPost = (userContent) => {
-  return async (dispatch) => {
-    const res = await API.post("/post", userContent);
-
-    dispatch({
-      type: CREATE_POST,
-      payload: res.data.data,
-    });
   };
 };
 
@@ -51,6 +38,17 @@ export const getUser = (id) => {
 
     dispatch({
       type: GET_USER,
+      payload: res.data.data,
+    });
+  };
+};
+
+export const createPost = (userContent) => {
+  return async (dispatch) => {
+    const res = await API.post("/post", userContent);
+
+    dispatch({
+      type: CREATE_POST,
       payload: res.data.data,
     });
   };
