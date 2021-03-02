@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import "./styles.scss";
 import { createPost, getUser } from "../../actions";
 
+import Navbar from "../navbar/Navbar";
+
 const Feed = ({ auth, currentUser, createPost, getUser }) => {
   const [postText, setPostText] = useState("");
   // const storedJwt = localStorage.getItem("token");
@@ -33,12 +35,13 @@ const Feed = ({ auth, currentUser, createPost, getUser }) => {
   };
 
   return (
-    <div>
+    <>
+      <Navbar />
       <h1>Username: {currentUser?.username}</h1>
       <textarea value={postText} onChange={onInputChange}></textarea>
       <button onClick={onPostClick}>Share</button>
       {renderPosts()}
-    </div>
+    </>
   );
 };
 
