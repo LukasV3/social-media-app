@@ -24,7 +24,7 @@ const Navbar = () => {
               value={searchTerm}
               onChange={onInputChange}
               className="nav__search--input"
-              placeholder="Search..."
+              placeholder="Search"
             />
             <button className="nav__search--btn">
               <i className="fas fa-search"></i>

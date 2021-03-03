@@ -1,4 +1,10 @@
 .sidebar {
   height: 30rem;
   border: 1px solid #999;
+  background-color: rgb(240, 240, 240);
+
+  &__user {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+  }
 }

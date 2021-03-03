@@ -1,21 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./styles.scss";
-import { createPost, getUser } from "../../actions";
+import { createPost } from "../../actions";
 
 import CreatePost from "../posts/createPost/CreatePost";
 import Post from "../posts/Post";
 
-const Feed = ({ auth, currentUser, getUser }) => {
-  // const storedJwt = localStorage.getItem("token");
-
-  useEffect(() => {
-    // get user data
-    if (auth.isSignedIn) {
-      getUser(auth.userId);
-    }
-  }, [getUser, auth]);
-
+const Feed = ({ currentUser }) => {
   const renderPosts = () => {
     if (currentUser && currentUser.posts.length > 0) {
       return [...currentUser.posts]
@@ -35,7 +26,7 @@ const Feed = ({ auth, currentUser, getUser }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { auth: state.auth, currentUser: state.currentUser };
+  return { currentUser: state.currentUser };
 };
 
-export default connect(mapStateToProps, { createPost, getUser })(Feed);
+export default connect(mapStateToProps, { createPost })(Feed);
