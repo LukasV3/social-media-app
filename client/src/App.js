@@ -6,6 +6,9 @@ import history from "./history";
 import Login from "./components/login/Login";
 import SignUp from "./components/signup/SignUp";
 import Feed from "./components/feed/Feed";
+import Navbar from "./components/navbar/Navbar";
+import Sidebar from "./components/sidebar/Sidebar";
+import Friends from "./components/friends/Friends";
 
 const App = () => {
   return (
@@ -14,7 +17,22 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/signup" exact component={SignUp} />
-          <Route path="/:id/feed" exact component={Feed} />
+
+          <Route path="/:id/feed">
+            <Navbar />
+            <div className="app-overview">
+              <Sidebar />
+              <Feed />
+            </div>
+          </Route>
+
+          <Route path="/:id/friends">
+            <Navbar />
+            <div className="app-overivew">
+              <Sidebar />
+              <Friends />
+            </div>
+          </Route>
         </Switch>
       </div>
     </Router>
