@@ -20,17 +20,17 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
       <div className="sidebar__user">
         <div className="sidebar__user--img"></div>
         <p className="sidebar__user--name">{currentUser?.username}</p>
-        <p className="sidebar__user--name"></p>
+        <p className="sidebar__user--username">{currentUser?.username}</p>
       </div>
 
       <div className="sidebar__menu">
         <ul>
           <li>
-            <i class="fas fa-copy"></i>
+            <i className="fas fa-copy"></i>
             <Link to={`/${currentUser?.username}/feed`}>Feed</Link>
           </li>
           <li>
-            <i class="fas fa-user-friends"></i>
+            <i className="fas fa-user-friends"></i>
             <Link to={`/${currentUser?.username}/friends`}>Friends</Link>
           </li>
         </ul>
