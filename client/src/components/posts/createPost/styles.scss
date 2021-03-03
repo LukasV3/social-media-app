@@ -1,2 +1,36 @@
 .create-post {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.25rem;
+    height: 3.25rem;
+    border: none;
+    margin-bottom: 0.5rem;
+    // border: 1px solid #999;
+    border-radius: 1rem;
+  }
+
+  &__btn {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid #979797;
+    cursor: pointer;
+    float: right;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }

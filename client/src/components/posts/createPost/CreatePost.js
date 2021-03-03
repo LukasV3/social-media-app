@@ -19,13 +19,25 @@ const CreatePost = ({ currentUser, createPost }) => {
 
   return (
     <div className="create-post">
-      <h3>Post Something</h3>
+      <h3 className="create-post__title">Post Something</h3>
+      <hr />
       <div>
-        <textarea value={postText} onChange={onInputChange}></textarea>
-        <button onClick={onPostClick}>Share</button>
+        <textarea
+          className="create-post__input"
+          value={postText}
+          onChange={onInputChange}
+          placeholder="Whats on your mind?"
+        ></textarea>
+        <button className="create-post__btn" onClick={onPostClick}>
+          Post
+        </button>
       </div>
     </div>
   );
 };
 
-export default connect(null, { createPost })(CreatePost);
+const mapStateToProps = (state) => {
+  return { currentUser: state.currentUser };
+};
+
+export default connect(mapStateToProps, { createPost })(CreatePost);

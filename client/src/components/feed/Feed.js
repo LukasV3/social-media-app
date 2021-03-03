@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./styles.scss";
 import { createPost, getUser } from "../../actions";
 
-import Navbar from "../navbar/Navbar";
-import Posts from "../posts/Posts";
+import CreatePost from "../posts/createPost/CreatePost";
+import Post from "../posts/Post";
 
-const Feed = ({ auth, currentUser, createPost, getUser }) => {
+const Feed = ({ auth, currentUser, getUser }) => {
   // const storedJwt = localStorage.getItem("token");
 
   useEffect(() => {
@@ -16,24 +16,21 @@ const Feed = ({ auth, currentUser, createPost, getUser }) => {
     }
   }, [getUser, auth]);
 
+  const renderPosts = () => {
+    if (currentUser && currentUser.posts.length > 0) {
+      return [...currentUser.posts]
+        .reverse()
+        .map((post, i) => <Post key={i} post={post} />);
+    }
+
+    return <p>No posts</p>;
+  };
+
   return (
-    // <>
-    //   <Navbar />
-    //   <div className="container">
-    //     <div className="sidebar">
-    //       <h3>Username: {currentUser?.username}</h3>
-    //     </div>
-    //     {/* depending on route render either friends or feeds etc */}
-    //     <Posts currentUser={currentUser} />
-    //   </div>
-    //   {/* <h1>Username: {currentUser?.username}</h1>
-    //   <textarea value={postText} onChange={onInputChange}></textarea>
-    //   <button onClick={onPostClick}>Share</button>
-    //   {renderPosts()} */}
-
-    // </>
-
-    <div className="feed">feed</div>
+    <div className="feed">
+      <CreatePost />
+      {renderPosts()}
+    </div>
   );
 };
 

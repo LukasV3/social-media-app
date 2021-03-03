@@ -1,2 +1,13 @@
 .feed {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .feed {
+    width: 100%;
+  }
 }
