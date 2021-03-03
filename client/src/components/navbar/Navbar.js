@@ -12,18 +12,19 @@ const Navbar = () => {
   return (
     <nav className="nav">
       <ul className="nav__links">
-        <li className="nav__item">
+        <li className="nav__item nav__item--logo">
           <a className="nav__link--logo" href="/">
-            Social Media App
+            Social App
           </a>
         </li>
-        <li className="nav__item">
+        <li className="nav__item nav__item--search">
           <div className="nav__search">
             <input
               type="text"
               value={searchTerm}
               onChange={onInputChange}
               className="nav__search--input"
+              placeholder="Search..."
             />
             <button className="nav__search--btn">
               <i className="fas fa-search"></i>
