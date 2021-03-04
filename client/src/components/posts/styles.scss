@@ -4,6 +4,24 @@
   border-radius: 0.5rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
+  position: relative;
+
+  &__delete--btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(255, 23, 23);
+    color: #000;
+    padding: 0.3rem 0.45rem;
+    font-size: 1rem;
+    border-radius: 0 0.5rem 0 0.5rem;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
 
   &__user-info {
     display: grid;

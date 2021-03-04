@@ -10,8 +10,13 @@ const Post = ({ post }) => {
       : `${dateFormat(date, "d mmmm")} at ${dateFormat(date, "HH:MM TT")}`;
   };
 
+  const onDeletePostClick = () => {};
+
   return (
     <div className="post">
+      <button onClick={onDeletePostClick} className="post__delete--btn">
+        <i class="fas fa-times"></i>
+      </button>
       <div className="post__user-info">
         <div className="post__user-info--img"></div>
         <p className="post__user-info--name">{post.name}</p>

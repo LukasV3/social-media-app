@@ -9,3 +9,12 @@ module.exports.createPost = catchAsync(async (req, res, next) => {
     data: post,
   });
 });
+
+module.exports.deletePost = catchAsync(async (req, res, next) => {
+  await Post.findByIdAndDelete(req.params.id);
+
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});
