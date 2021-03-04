@@ -1,18 +1,30 @@
 import API from "../services/api";
 import history from "../history";
 import { LOGIN, SIGNUP, CREATE_POST, GET_USER, DELETE_POST } from "./types";
+import { showAlert, hideAlert } from "../services/alerts";
 
 export const login = (formValues) => {
   return async (dispatch) => {
-    const res = await API.post("/login", formValues);
+    try {
+      const res = await API.post("/login", formValues);
 
-    dispatch({
-      type: LOGIN,
-      payload: res.data.data.id,
-    });
+      dispatch({
+        type: LOGIN,
+        payload: res.data.data.id,
+      });
 
-    if (res.data.status === "success") {
-      history.push(`/${res.data.data.username}/feed`);
+      if (res.data.status === "success") {
+        showAlert("success", "Logged in successfully!");
+        window.setTimeout(() => {
+          history.push(`/${res.data.data.username}/feed`);
+          hideAlert();
+        }, 1500);
+      }
+    } catch (err) {
+      showAlert("error", "Please try again!");
+      window.setTimeout(() => {
+        hideAlert();
+      }, 3000);
     }
   };
 };
