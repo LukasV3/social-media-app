@@ -20,7 +20,7 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
       <div className="sidebar__user">
         <div className="sidebar__user--img"></div>
         <p className="sidebar__user--name">{currentUser?.username}</p>
-        <p className="sidebar__user--username">{currentUser?.username}</p>
+        <p className="sidebar__user--username">@areallylongmaded</p>
       </div>
 
       <div className="sidebar__menu">
@@ -31,7 +31,7 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
               className="sidebar__menu--link sidebar__menu--active"
             >
               <i className="fas fa-copy sidebar__menu--icon sidebar__menu--active"></i>
-              Feed
+              <span>Feed</span>
             </Link>
           </li>
           <li className="sidebar__menu--item">
@@ -39,7 +39,8 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
               to={`/${currentUser?.username}/friends`}
               className="sidebar__menu--link"
             >
-              <i className="fas fa-user-friends sidebar__menu--icon"></i> Friends
+              <i className="fas fa-user-friends sidebar__menu--icon"></i>
+              <span>Friends</span>
             </Link>
           </li>
         </ul>

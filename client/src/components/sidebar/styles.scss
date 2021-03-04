@@ -11,7 +11,7 @@
     align-items: center;
     border: 1px solid #999;
     background-color: rgb(228, 228, 228);
-    margin: 0 2rem;
+    margin: 0 1.5rem;
     border-radius: 1rem;
     padding: 0.75rem;
     margin-bottom: 1.5rem;
@@ -27,6 +27,11 @@
     &--name {
       font-weight: 600;
       font-size: 1.2rem;
+      overflow-x: scroll;
+    }
+
+    &--username {
+      overflow-x: scroll;
     }
   }
 
@@ -65,6 +70,46 @@
       background-color: #fff;
       color: cornflowerblue;
       border-left: 5px solid cornflowerblue;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .sidebar__user {
+    display: flex;
+    flex-direction: column;
+
+    &--img {
+      margin-bottom: 0.5rem;
+    }
+
+    &--name {
+      // display: none;
+      font-size: 0.95rem;
+    }
+
+    &--username {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 825px) {
+  .sidebar__menu {
+    &--link {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0.75rem 0;
+      font-size: 1rem;
+
+      & span {
+      }
+    }
+
+    &--icon {
+      margin: 0 0 0.5rem 0;
     }
   }
 }
