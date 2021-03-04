@@ -9,6 +9,7 @@ import Feed from "./components/feed/Feed";
 import Navbar from "./components/navbar/Navbar";
 import Sidebar from "./components/sidebar/Sidebar";
 import Friends from "./components/friends/Friends";
+import UserDetail from "./components/userDetail/UserDetail";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
           <Route path="/" exact component={Login} />
           <Route path="/signup" exact component={SignUp} />
 
-          <Route path="/:id/feed">
+          <Route path="/:username/feed" exact>
             <Navbar />
             <div className="app-overview">
               <Sidebar />
@@ -26,11 +27,19 @@ const App = () => {
             </div>
           </Route>
 
-          <Route path="/:id/friends">
+          <Route path="/:username/friends" exact>
             <Navbar />
             <div className="app-overview">
               <Sidebar />
               <Friends />
+            </div>
+          </Route>
+
+          <Route path="/:username/detail" exact>
+            <Navbar />
+            <div className="app-overview">
+              <Sidebar />
+              <UserDetail />
             </div>
           </Route>
         </Switch>

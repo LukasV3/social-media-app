@@ -14,7 +14,7 @@ const Feed = ({ currentUser }) => {
         .map((post, i) => <Post key={i} post={post} />);
     }
 
-    return <p>No posts</p>;
+    // return <p>No posts</p>;
   };
 
   return (

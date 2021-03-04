@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import history from "../../history";
 
 import { getUser } from "../../actions";
 
@@ -16,8 +17,15 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
   }, [getUser, auth]);
 
   const toggleActiveMenu = (e) => {
-    const currentlyActiveMenuEl = document.querySelector(".sidebar__menu--active");
-    const selectedMenuEl = e.target.closest(".sidebar__menu--link");
+    let currentlyActiveMenuEl = document.querySelector(".sidebar__menu--active");
+    if (!currentlyActiveMenuEl) {
+      currentlyActiveMenuEl = document.querySelector(".sidebar__user");
+    }
+
+    let selectedMenuEl = e.target.closest(".sidebar__menu--link");
+    if (!selectedMenuEl) {
+      selectedMenuEl = document.querySelector(".sidebar__user");
+    }
 
     currentlyActiveMenuEl.classList.remove("sidebar__menu--active");
     selectedMenuEl.classList.add("sidebar__menu--active");
@@ -25,7 +33,14 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
 
   return (
     <div className="sidebar">
-      <div className="sidebar__user">
+      <div
+        onClick={(e) => {
+          toggleActiveMenu(e);
+          history.push(`/${currentUser?.username}/detail`);
+        }}
+        className="sidebar__user"
+        style={{ border: "1px solid #999" }}
+      >
         <div className="sidebar__user--img"></div>
         <p className="sidebar__user--name">
           {currentUser?.name || currentUser?.username}
