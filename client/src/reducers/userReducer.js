@@ -1,4 +1,4 @@
-import { GET_USER, CREATE_POST } from "../actions/types";
+import { GET_USER, CREATE_POST, DELETE_POST } from "../actions/types";
 
 const initalState = null;
 
@@ -8,6 +8,11 @@ const userReducer = (state = initalState, action) => {
       return action.payload;
     case CREATE_POST:
       return { ...state, posts: [...state.posts, action.payload] };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post._id !== action.payload),
+      };
     default:
       return state;
   }

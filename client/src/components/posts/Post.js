@@ -1,8 +1,10 @@
 import React from "react";
 import "./styles.scss";
 import dateFormat from "dateformat";
+import { connect } from "react-redux";
+import { deletePost } from "../../actions";
 
-const Post = ({ post }) => {
+const Post = ({ post, deletePost }) => {
   const renderCreatedAt = (date) => {
     const day = dateFormat(date, "DDDD");
     return day === "Today" || day === "Yesterday"
@@ -10,12 +12,10 @@ const Post = ({ post }) => {
       : `${dateFormat(date, "d mmmm")} at ${dateFormat(date, "HH:MM TT")}`;
   };
 
-  const onDeletePostClick = () => {};
-
   return (
     <div className="post">
-      <button onClick={onDeletePostClick} className="post__delete--btn">
-        <i class="fas fa-times"></i>
+      <button onClick={() => deletePost(post._id)} className="post__delete--btn">
+        <i className="fas fa-times"></i>
       </button>
       <div className="post__user-info">
         <div className="post__user-info--img"></div>
@@ -29,4 +29,8 @@ const Post = ({ post }) => {
   );
 };
 
-export default Post;
+const mapStateToProps = (state) => {
+  return { currentUser: state.currentUser };
+};
+
+export default connect(mapStateToProps, { deletePost })(Post);

@@ -1,6 +1,6 @@
 import API from "../services/api";
 import history from "../history";
-import { LOGIN, SIGNUP, CREATE_POST, GET_USER } from "./types";
+import { LOGIN, SIGNUP, CREATE_POST, GET_USER, DELETE_POST } from "./types";
 
 export const login = (formValues) => {
   return async (dispatch) => {
@@ -50,6 +50,17 @@ export const createPost = (userContent) => {
     dispatch({
       type: CREATE_POST,
       payload: res.data.data,
+    });
+  };
+};
+
+export const deletePost = (id) => {
+  return async (dispatch) => {
+    await API.delete(`/post/${id}`);
+
+    dispatch({
+      type: DELETE_POST,
+      payload: id,
     });
   };
 };
