@@ -28,7 +28,7 @@ const App = () => {
 
           <Route path="/:id/friends">
             <Navbar />
-            <div className="app-overivew">
+            <div className="app-overview">
               <Sidebar />
               <Friends />
             </div>

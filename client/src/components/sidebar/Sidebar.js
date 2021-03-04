@@ -15,12 +15,20 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
     }
   }, [getUser, auth]);
 
+  const toggleActiveMenu = (e) => {
+    const currentlyActiveMenuEl = document.querySelector(".sidebar__menu--active");
+    const selectedMenuEl = e.target.closest(".sidebar__menu--link");
+
+    currentlyActiveMenuEl.classList.remove("sidebar__menu--active");
+    selectedMenuEl.classList.add("sidebar__menu--active");
+  };
+
   return (
     <div className="sidebar">
       <div className="sidebar__user">
         <div className="sidebar__user--img"></div>
         <p className="sidebar__user--name">{currentUser?.username}</p>
-        <p className="sidebar__user--username">@areallylongmaded</p>
+        <p className="sidebar__user--username">@{currentUser?.username}</p>
       </div>
 
       <div className="sidebar__menu">
@@ -29,8 +37,9 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
             <Link
               to={`/${currentUser?.username}/feed`}
               className="sidebar__menu--link sidebar__menu--active"
+              onClick={toggleActiveMenu}
             >
-              <i className="fas fa-copy sidebar__menu--icon sidebar__menu--active"></i>
+              <i className="fas fa-copy sidebar__menu--icon"></i>
               <span>Feed</span>
             </Link>
           </li>
@@ -38,6 +47,7 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
             <Link
               to={`/${currentUser?.username}/friends`}
               className="sidebar__menu--link"
+              onClick={toggleActiveMenu}
             >
               <i className="fas fa-user-friends sidebar__menu--icon"></i>
               <span>Friends</span>
