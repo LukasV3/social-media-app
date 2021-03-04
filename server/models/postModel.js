@@ -5,6 +5,9 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: [true, "Post must belong to a user"],
   },
+  name: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

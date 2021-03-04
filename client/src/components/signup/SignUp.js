@@ -9,7 +9,6 @@ const SignUp = ({ signup }) => {
   const signUserUp = (e, formValues) => {
     e.preventDefault();
     signup(formValues);
-    console.log(formValues);
   };
   return <AuthForm type="Sign Up" onSubmitButtonClick={signUserUp} />;
 };

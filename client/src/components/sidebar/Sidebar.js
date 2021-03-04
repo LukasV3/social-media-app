@@ -27,7 +27,9 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
     <div className="sidebar">
       <div className="sidebar__user">
         <div className="sidebar__user--img"></div>
-        <p className="sidebar__user--name">{currentUser?.username}</p>
+        <p className="sidebar__user--name">
+          {currentUser?.name || currentUser?.username}
+        </p>
         <p className="sidebar__user--username">@{currentUser?.username}</p>
       </div>
 

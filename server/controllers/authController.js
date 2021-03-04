@@ -55,6 +55,7 @@ module.exports.login = catchAsync(async (req, res, next) => {
 
 module.exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
+    name: req.body.name,
     username: req.body.username,
     password: req.body.password,
   });

@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a password"],
     },
+    name: {
+      type: String,
+    },
     following: [
       {
         type: mongoose.Schema.ObjectId,

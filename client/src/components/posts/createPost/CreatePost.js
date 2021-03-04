@@ -13,7 +13,11 @@ const CreatePost = ({ currentUser, createPost }) => {
 
   const onPostClick = (e) => {
     e.preventDefault();
-    createPost({ username: currentUser.username, content: postText });
+    createPost({
+      username: currentUser.username,
+      name: currentUser.name,
+      content: postText,
+    });
     setPostText("");
   };
 
