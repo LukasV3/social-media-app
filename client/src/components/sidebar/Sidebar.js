@@ -24,14 +24,23 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
       </div>
 
       <div className="sidebar__menu">
-        <ul>
-          <li>
-            <i className="fas fa-copy"></i>
-            <Link to={`/${currentUser?.username}/feed`}>Feed</Link>
+        <ul className="sidebar__menu--links">
+          <li className="sidebar__menu--item">
+            <Link
+              to={`/${currentUser?.username}/feed`}
+              className="sidebar__menu--link sidebar__menu--active"
+            >
+              <i className="fas fa-copy sidebar__menu--icon sidebar__menu--active"></i>
+              Feed
+            </Link>
           </li>
-          <li>
-            <i className="fas fa-user-friends"></i>
-            <Link to={`/${currentUser?.username}/friends`}>Friends</Link>
+          <li className="sidebar__menu--item">
+            <Link
+              to={`/${currentUser?.username}/friends`}
+              className="sidebar__menu--link"
+            >
+              <i className="fas fa-user-friends sidebar__menu--icon"></i> Friends
+            </Link>
           </li>
         </ul>
       </div>

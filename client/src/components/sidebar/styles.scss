@@ -1,6 +1,5 @@
 .sidebar {
-  height: 30rem;
-  border: 1px solid #999;
+  height: 100%;
   background-color: rgb(240, 240, 240);
   padding: 1.5rem 0;
 
@@ -15,6 +14,7 @@
     margin: 0 2rem;
     border-radius: 1rem;
     padding: 0.75rem;
+    margin-bottom: 1.5rem;
 
     &--img {
       width: 3rem;
@@ -27,6 +27,44 @@
     &--name {
       font-weight: 600;
       font-size: 1.2rem;
+    }
+  }
+
+  &__menu {
+    width: 100%;
+
+    &--links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &--item {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    &--link {
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #000;
+      width: 100%;
+      padding: 1rem 1rem 1rem 3rem;
+      font-weight: 600;
+    }
+
+    &--icon {
+      margin-right: 0.75rem;
+      color: #3b3b3b;
+    }
+
+    &--active {
+      background-color: #fff;
+      color: cornflowerblue;
+      border-left: 5px solid cornflowerblue;
     }
   }
 }
