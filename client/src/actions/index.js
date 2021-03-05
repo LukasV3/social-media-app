@@ -1,6 +1,14 @@
 import API from "../services/api";
 import history from "../history";
-import { LOGIN, SIGNUP, CREATE_POST, GET_USER, DELETE_POST, UPDATE_USER } from "./types";
+import {
+  LOGIN,
+  SIGNUP,
+  CREATE_POST,
+  GET_USER,
+  DELETE_POST,
+  UPDATE_USER,
+  ACCEPT_FRIEND_REQUEST,
+} from "./types";
 import { showAlert, hideAlert } from "../services/alerts";
 
 export const login = (formValues) => {
@@ -84,6 +92,17 @@ export const deletePost = (id) => {
     dispatch({
       type: DELETE_POST,
       payload: id,
+    });
+  };
+};
+
+export const acceptFriendRequest = (id1, id2) => {
+  return async (dispatch) => {
+    const res = await API.post(`/friends/${id1}/acceptFrom/${id2}`);
+
+    dispatch({
+      type: ACCEPT_FRIEND_REQUEST,
+      payload: res.data.data,
     });
   };
 };

@@ -60,4 +60,12 @@ userSchema.pre(/^find/, function (next) {
   next();
 });
 
+userSchema.pre(/^find/, function (next) {
+  this.populate(
+    "friends",
+    "-password -friends -recievedFriendRequestsFrom -sentFriendRequestsTo "
+  );
+  next();
+});
+
 module.exports = mongoose.model("User", userSchema);

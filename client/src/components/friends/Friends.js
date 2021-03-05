@@ -2,15 +2,24 @@ import React from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 
-const Friends = ({ currentUser }) => {
-  const acceptFriendRequest = (id) => {};
+import { acceptFriendRequest } from "../../actions";
+
+const Friends = ({ currentUser, acceptFriendRequest }) => {
+  const renderFriends = () => {
+    if (currentUser && currentUser.friends.length > 0) {
+      return currentUser.friends.map((user, i) => <p key={i}>{user.username}</p>);
+    }
+    return <p>You have no friends</p>;
+  };
 
   const renderFriendRequests = () => {
     if (currentUser && currentUser.recievedFriendRequestsFrom.length > 0) {
       return currentUser.recievedFriendRequestsFrom.map((user, i) => (
         <div key={i}>
           <p>{user.username}</p>
-          <button onClick={() => acceptFriendRequest(user.id)}>Accept</button>
+          <button onClick={() => acceptFriendRequest(currentUser?.id, user.id)}>
+            Accept
+          </button>
           <button>Decline</button>
         </div>
       ));
@@ -21,7 +30,7 @@ const Friends = ({ currentUser }) => {
   return (
     <div className="friends">
       <h3>My Friends</h3>
-      <p></p>
+      {renderFriends()}
 
       <h3>Friend Requests</h3>
       {renderFriendRequests()}
@@ -33,4 +42,4 @@ const mapStateToProps = (state) => {
   return { currentUser: state.currentUser };
 };
 
-export default connect(mapStateToProps)(Friends);
+export default connect(mapStateToProps, { acceptFriendRequest })(Friends);
