@@ -8,6 +8,7 @@ import {
   DELETE_POST,
   UPDATE_USER,
   ACCEPT_FRIEND_REQUEST,
+  DELETE_FRIEND,
 } from "./types";
 import { showAlert, hideAlert } from "../services/alerts";
 
@@ -102,6 +103,17 @@ export const acceptFriendRequest = (id1, id2) => {
 
     dispatch({
       type: ACCEPT_FRIEND_REQUEST,
+      payload: res.data.data,
+    });
+  };
+};
+
+export const deleteFriend = (id1, id2) => {
+  return async (dispatch) => {
+    const res = await API.delete(`/friends/${id1}/${id2}`);
+
+    dispatch({
+      type: DELETE_FRIEND,
       payload: res.data.data,
     });
   };

@@ -4,6 +4,7 @@ import {
   DELETE_POST,
   UPDATE_USER,
   ACCEPT_FRIEND_REQUEST,
+  DELETE_FRIEND,
 } from "../actions/types";
 
 const initalState = null;
@@ -22,6 +23,8 @@ const userReducer = (state = initalState, action) => {
         posts: state.posts.filter((post) => post._id !== action.payload),
       };
     case ACCEPT_FRIEND_REQUEST:
+      return { ...state, ...action.payload };
+    case DELETE_FRIEND:
       return { ...state, ...action.payload };
     default:
       return state;

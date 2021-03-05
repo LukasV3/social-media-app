@@ -16,6 +16,7 @@ router.delete("/post/:id", postController.deletePost);
 
 router.post("/friends/:fromId/requestTo/:toId", friendsController.sendFriendRequest);
 router.post("/friends/:userId/acceptFrom/:fromId", friendsController.acceptFriendRequest);
+router.delete("/friends/:userId/:deletingId", friendsController.deleteFriend);
 
 router.route("/").get(userController.getAllUsers).post(userController.createUser);
 router

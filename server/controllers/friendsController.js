@@ -38,3 +38,22 @@ module.exports.acceptFriendRequest = catchAsync(async (req, res, next) => {
     data: updatedUser,
   });
 });
+
+module.exports.deleteFriend = catchAsync(async (req, res, next) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    req.params.userId,
+    {
+      $pull: { friends: req.params.deletingId },
+    },
+    { new: true }
+  );
+
+  await User.findByIdAndUpdate(req.params.deletingId, {
+    $pull: { friends: req.params.userId },
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: updatedUser,
+  });
+});

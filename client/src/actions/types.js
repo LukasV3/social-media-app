@@ -12,3 +12,4 @@ export const DELETE_POST = "DELETE_POST";
 
 // Friends
 export const ACCEPT_FRIEND_REQUEST = "ACCEPT_FRIEND_REQUEST";
+export const DELETE_FRIEND = "DELETE_FRIEND";
