@@ -48,18 +48,16 @@ userSchema.virtual("posts", {
 
 // Query Middleware
 userSchema.pre(/^find/, function (next) {
-  this.populate("friends", "username");
-  next();
-});
-
-userSchema.pre(/^find/, function (next) {
   this.populate("posts");
   next();
 });
 
-// userSchema.pre(/^find/, function (next) {
-//   this.populate({ path: "followers", select: "username" });
-//   next();
-// });
+userSchema.pre(/^find/, function (next) {
+  this.populate(
+    "recievedFriendRequestsFrom",
+    "-password -friends -recievedFriendRequestsFrom -sentFriendRequestsTo "
+  );
+  next();
+});
 
 module.exports = mongoose.model("User", userSchema);
