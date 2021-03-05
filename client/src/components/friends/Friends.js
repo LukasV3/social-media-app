@@ -2,9 +2,14 @@ import React from "react";
 import "./styles.scss";
 import { connect } from "react-redux";
 
-import { acceptFriendRequest, deleteFriend } from "../../actions";
+import { acceptFriendRequest, deleteFriend, declineFriendRequest } from "../../actions";
 
-const Friends = ({ currentUser, acceptFriendRequest, deleteFriend }) => {
+const Friends = ({
+  currentUser,
+  acceptFriendRequest,
+  deleteFriend,
+  declineFriendRequest,
+}) => {
   const renderFriends = () => {
     if (currentUser && currentUser.friends.length > 0) {
       return currentUser.friends.map((user, i) => (
@@ -27,7 +32,9 @@ const Friends = ({ currentUser, acceptFriendRequest, deleteFriend }) => {
           <button onClick={() => acceptFriendRequest(currentUser.id, user.id)}>
             Accept
           </button>
-          <button>Decline</button>
+          <button onClick={() => declineFriendRequest(currentUser.id, user.id)}>
+            Decline
+          </button>
         </div>
       ));
     }
@@ -49,4 +56,8 @@ const mapStateToProps = (state) => {
   return { currentUser: state.currentUser };
 };
 
-export default connect(mapStateToProps, { acceptFriendRequest, deleteFriend })(Friends);
+export default connect(mapStateToProps, {
+  acceptFriendRequest,
+  deleteFriend,
+  declineFriendRequest,
+})(Friends);

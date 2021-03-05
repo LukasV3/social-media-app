@@ -57,3 +57,22 @@ module.exports.deleteFriend = catchAsync(async (req, res, next) => {
     data: updatedUser,
   });
 });
+
+module.exports.declineFriendRequest = catchAsync(async (req, res, next) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    req.params.userId,
+    {
+      $pull: { recievedFriendRequestsFrom: req.params.decliningId },
+    },
+    { new: true }
+  );
+
+  await User.findByIdAndUpdate(req.params.decliningId, {
+    $pull: { sentFriendRequestsTo: req.params.userId },
+  });
+
+  res.status(200).json({
+    status: "success",
+    data: updatedUser,
+  });
+});

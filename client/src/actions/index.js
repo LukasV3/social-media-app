@@ -8,6 +8,7 @@ import {
   DELETE_POST,
   UPDATE_USER,
   ACCEPT_FRIEND_REQUEST,
+  DECLINE_FRIEND_REQUEST,
   DELETE_FRIEND,
 } from "./types";
 import { showAlert, hideAlert } from "../services/alerts";
@@ -103,6 +104,17 @@ export const acceptFriendRequest = (id1, id2) => {
 
     dispatch({
       type: ACCEPT_FRIEND_REQUEST,
+      payload: res.data.data,
+    });
+  };
+};
+
+export const declineFriendRequest = (id1, id2) => {
+  return async (dispatch) => {
+    const res = await API.patch(`/friends/${id1}/${id2}`);
+
+    dispatch({
+      type: DECLINE_FRIEND_REQUEST,
       payload: res.data.data,
     });
   };
