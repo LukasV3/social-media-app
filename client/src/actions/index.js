@@ -1,6 +1,6 @@
 import API from "../services/api";
 import history from "../history";
-import { LOGIN, SIGNUP, CREATE_POST, GET_USER, DELETE_POST } from "./types";
+import { LOGIN, SIGNUP, CREATE_POST, GET_USER, DELETE_POST, UPDATE_USER } from "./types";
 import { showAlert, hideAlert } from "../services/alerts";
 
 export const login = (formValues) => {
@@ -50,6 +50,17 @@ export const getUser = (id) => {
 
     dispatch({
       type: GET_USER,
+      payload: res.data.data,
+    });
+  };
+};
+
+export const updateUser = (id, formValues) => {
+  return async (dispatch) => {
+    const res = await API.patch(`/${id}`, formValues);
+
+    dispatch({
+      type: UPDATE_USER,
       payload: res.data.data,
     });
   };

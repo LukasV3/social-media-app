@@ -1,0 +1,12 @@
+.user-detail {
+  width: 80%;
+  margin: 1rem 1rem 0 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .user-detail {
+    width: 100%;
+  }
+}
