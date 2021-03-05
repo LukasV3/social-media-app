@@ -36,7 +36,7 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
       <div
         onClick={(e) => {
           toggleActiveMenu(e);
-          history.push(`/${currentUser?.username}/detail`);
+          history.push(`/${currentUser?.username}/account`);
         }}
         className="sidebar__user"
         style={{ border: "1px solid #999" }}

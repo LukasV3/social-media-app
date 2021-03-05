@@ -31,6 +31,7 @@ const CreatePost = ({ currentUser, createPost }) => {
           value={postText}
           onChange={onInputChange}
           placeholder="Whats on your mind?"
+          autoFocus
         ></textarea>
         <button className="create-post__btn" onClick={onPostClick}>
           Post

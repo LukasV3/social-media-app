@@ -14,18 +14,24 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
     },
-    following: [
+    friends: [
       {
         type: mongoose.Schema.ObjectId,
         ref: "User",
       },
     ],
-    // followers: [
-    //   {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: "User",
-    //   },
-    // ],
+    recievedFriendRequestsFrom: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
+    sentFriendRequestsTo: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     toJSON: { virtuals: true },
@@ -42,7 +48,7 @@ userSchema.virtual("posts", {
 
 // Query Middleware
 userSchema.pre(/^find/, function (next) {
-  this.populate("following", "username");
+  this.populate("friends", "username");
   next();
 });
 

@@ -35,7 +35,7 @@ const App = () => {
             </div>
           </Route>
 
-          <Route path="/:username/detail" exact>
+          <Route path="/:username/account" exact>
             <Navbar />
             <div className="app-overview">
               <Sidebar />
