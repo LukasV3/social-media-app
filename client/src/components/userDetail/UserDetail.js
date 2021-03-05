@@ -19,30 +19,40 @@ const UserDetail = ({ currentUser, updateUser }) => {
 
   return (
     <div className="user-detail">
-      <h3>Your Account Settings</h3>
-      <form className="user-detail__form">
-        <div className="user-detail__form--group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            onChange={(e) => onInputChange(e, "name")}
-            value={nameTerm}
-            id="name"
-          ></input>
-        </div>
+      <div className="user-detail__settings">
+        <h3 className="user-detail__settings--title">Your Account Settings</h3>
+        <form className="user-detail__form">
+          <div className="user-detail__form--group">
+            <label className="user-detail__form--label" htmlFor="name">
+              Name
+            </label>
+            <input
+              type="text"
+              onChange={(e) => onInputChange(e, "name")}
+              value={nameTerm}
+              className="user-detail__form--input"
+              id="name"
+            ></input>
+          </div>
 
-        <div className="user-detail__form--group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            onChange={(e) => onInputChange(e, "username")}
-            value={usernameTerm}
-            id="username"
-          ></input>
-        </div>
+          <div className="user-detail__form--group">
+            <label className="user-detail__form--label" htmlFor="username">
+              Username
+            </label>
+            <input
+              type="text"
+              onChange={(e) => onInputChange(e, "username")}
+              value={usernameTerm}
+              className="user-detail__form--input"
+              id="username"
+            ></input>
+          </div>
 
-        <button onClick={onSaveSettingsClick}>Save Settings</button>
-      </form>
+          <button onClick={onSaveSettingsClick} className="user-detail__form--btn">
+            Save Settings
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
