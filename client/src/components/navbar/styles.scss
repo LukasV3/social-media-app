@@ -21,6 +21,7 @@
     }
 
     &--search {
+      position: relative;
       grid-column: 3 / span 1;
     }
   }
@@ -52,6 +53,21 @@
       padding: 0 0.85rem;
       border: none;
       border-radius: 0 0.5rem 0.5rem 0;
+      cursor: pointer;
+    }
+  }
+
+  &__search--results {
+    // position: absolute;
+    background-color: yellow;
+    width: 45rem;
+    // height: 20rem;
+    bottom: -3.75rem;
+    left: -2.5rem;
+    margin-top: 1rem;
+
+    & div {
+      padding: 16px;
       cursor: pointer;
     }
   }
