@@ -7,6 +7,7 @@ import {
   GET_USER,
   DELETE_POST,
   UPDATE_USER,
+  SEND_FRIEND_REQUEST,
   ACCEPT_FRIEND_REQUEST,
   DECLINE_FRIEND_REQUEST,
   DELETE_FRIEND,
@@ -94,6 +95,17 @@ export const deletePost = (id) => {
     dispatch({
       type: DELETE_POST,
       payload: id,
+    });
+  };
+};
+
+export const sendFriendRequest = (id1, id2) => {
+  return async (dispatch) => {
+    const res = await API.post(`/friends/${id1}/requestTo/${id2}`);
+
+    dispatch({
+      type: SEND_FRIEND_REQUEST,
+      payload: res.data.data,
     });
   };
 };

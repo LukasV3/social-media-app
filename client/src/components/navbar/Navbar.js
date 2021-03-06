@@ -1,21 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./styles.scss";
 
-import API from "../../services/api";
+import { connect } from "react-redux";
+import { sendFriendRequest } from "../../actions";
+
 import Search from "../../services/search";
 
-const Navbar = () => {
+const Navbar = ({ currentUser, sendFriendRequest }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      // get all users and place in searchbase
-      const res = await API.get("/");
-      Search.addUsers(res.data.data);
-    };
-    fetchUsers();
-  }, []);
 
   const onInputChange = (e) => {
     e.preventDefault();
@@ -30,12 +23,41 @@ const Navbar = () => {
 
   const displaySearchResults = () => {
     if (searchResults) {
-      return searchResults.map((result, i) => (
-        <div key={i}>Username: {result.item.username}</div>
-      ));
-    }
+      return searchResults.map((result, i) => {
+        const btn = (
+          <button onClick={() => sendFriendRequest(currentUser.id, result.item.id)}>
+            Send Friend Request
+          </button>
+        );
 
-    return <p>No users found</p>;
+        // if user has already sent user a friend request
+        if (currentUser.sentFriendRequestsTo.find((id) => id === result.item.id)) {
+          return (
+            <div key={i}>
+              <p>{result.item.username}</p>
+              <p>(Friend request sent!)</p>
+            </div>
+          );
+        }
+
+        // if the user is themselves
+        if (currentUser.id === result.item.id) {
+          return (
+            <div key={i}>
+              <p>{result.item.username}</p>
+              <p>(Me)</p>
+            </div>
+          );
+        }
+
+        return (
+          <div key={i}>
+            <p>{result.item.username}</p>
+            {btn}
+          </div>
+        );
+      });
+    }
   };
 
   return (
@@ -55,15 +77,8 @@ const Navbar = () => {
               className="nav__search--input"
               placeholder="Search"
             />
-            <button className="nav__search--btn">
-              <i className="fas fa-search"></i>
-            </button>
-          </div>
 
-          <div className="nav__search--results">
-            {/* {displaySearchResults()} */}
-            <div>lukasvolk3</div>
-            <div>lukasvolk3</div>
+            <div className="nav__search--results">{displaySearchResults()}</div>
           </div>
         </li>
       </ul>
@@ -71,4 +86,8 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return { currentUser: state.currentUser };
+};
+
+export default connect(mapStateToProps, { sendFriendRequest })(Navbar);

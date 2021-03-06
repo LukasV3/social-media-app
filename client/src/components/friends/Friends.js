@@ -24,15 +24,27 @@ const Friends = ({
     return <p>You have no friends</p>;
   };
 
+  let handleFriendRequestClick = (type, id1, id2) => {
+    if (handleFriendRequestClick.fired) return;
+
+    type === "accept" ? acceptFriendRequest(id1, id2) : declineFriendRequest(id1, id2);
+
+    handleFriendRequestClick.fired = true;
+  };
+
   const renderFriendRequests = () => {
     if (currentUser && currentUser.recievedFriendRequestsFrom.length > 0) {
       return currentUser.recievedFriendRequestsFrom.map((user, i) => (
         <div key={i}>
           <p>{user.username}</p>
-          <button onClick={() => acceptFriendRequest(currentUser.id, user.id)}>
+          <button
+            onClick={() => handleFriendRequestClick("accept", currentUser.id, user.id)}
+          >
             Accept
           </button>
-          <button onClick={() => declineFriendRequest(currentUser.id, user.id)}>
+          <button
+            onClick={() => handleFriendRequestClick("decline", currentUser.id, user.id)}
+          >
             Decline
           </button>
         </div>

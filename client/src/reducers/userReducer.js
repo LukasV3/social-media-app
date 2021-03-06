@@ -3,6 +3,7 @@ import {
   CREATE_POST,
   DELETE_POST,
   UPDATE_USER,
+  SEND_FRIEND_REQUEST,
   ACCEPT_FRIEND_REQUEST,
   DECLINE_FRIEND_REQUEST,
   DELETE_FRIEND,
@@ -23,6 +24,8 @@ const userReducer = (state = initalState, action) => {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.payload),
       };
+    case SEND_FRIEND_REQUEST:
+      return { ...state, ...action.payload };
     case ACCEPT_FRIEND_REQUEST:
       return { ...state, ...action.payload };
     case DECLINE_FRIEND_REQUEST:

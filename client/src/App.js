@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import "./styles/index.scss";
 
@@ -11,7 +11,19 @@ import Sidebar from "./components/sidebar/Sidebar";
 import Friends from "./components/friends/Friends";
 import UserDetail from "./components/userDetail/UserDetail";
 
+import Search from "./services/search";
+import API from "./services/api";
+
 const App = () => {
+  useEffect(() => {
+    const fetchUsers = async () => {
+      // get all users and place in searchbase
+      const res = await API.get("/");
+      Search.addUsers(res.data.data);
+    };
+    fetchUsers();
+  }, []);
+
   return (
     <Router history={history}>
       <div className="app-container">
