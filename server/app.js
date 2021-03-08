@@ -16,12 +16,12 @@ app.use(cors());
 app.options("*", cors());
 
 // Serving static files
-// app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static("public"));
 
 // Reading data from req.body
 app.use(express.json({ limit: "10kb" }));
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.urlencoded({ extended: false, limit: "10kb" }));
 app.use(cookieParser());
 
 if (process.env === "development") {
