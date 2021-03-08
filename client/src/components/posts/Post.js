@@ -4,7 +4,7 @@ import dateFormat from "dateformat";
 import { connect } from "react-redux";
 import { deletePost } from "../../actions";
 
-const Post = ({ post, deletePost }) => {
+const Post = ({ post, currentUserPost, deletePost }) => {
   const renderCreatedAt = (date) => {
     const day = dateFormat(date, "DDDD");
     return day === "Today" || day === "Yesterday"
@@ -12,11 +12,15 @@ const Post = ({ post, deletePost }) => {
       : `${dateFormat(date, "d mmmm")} at ${dateFormat(date, "HH:MM TT")}`;
   };
 
+  const deletePostBtn = (
+    <button onClick={() => deletePost(post._id)} className="post__delete--btn">
+      <i className="fas fa-times"></i>
+    </button>
+  );
+
   return (
     <div className="post">
-      <button onClick={() => deletePost(post._id)} className="post__delete--btn">
-        <i className="fas fa-times"></i>
-      </button>
+      {currentUserPost ? deletePostBtn : ""}
       <div className="post__user-info">
         <div className="post__user-info--img"></div>
         <p className="post__user-info--name">{post.name}</p>

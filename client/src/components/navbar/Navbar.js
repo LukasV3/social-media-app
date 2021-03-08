@@ -40,12 +40,22 @@ const Navbar = ({ currentUser, sendFriendRequest }) => {
           );
         }
 
-        // if the user is themselves
+        // if user is themselves
         if (currentUser.id === result.item.id) {
           return (
             <div key={i}>
               <p>{result.item.username}</p>
               <p>(Me)</p>
+            </div>
+          );
+        }
+
+        // if user is already a friend
+        if (currentUser.friends.find((friend) => friend.id === result.item.id)) {
+          return (
+            <div key={i}>
+              <p>{result.item.username}</p>
+              <p>(Already firends)</p>
             </div>
           );
         }
