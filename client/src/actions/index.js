@@ -68,7 +68,10 @@ export const getUser = (id) => {
 
 export const updateUser = (id, formValues) => {
   return async (dispatch) => {
-    const res = await API.patch(`/${id}`, formValues);
+    const res = await API.patch(`/updateMe/${id}`, formValues, {
+      encoding: null,
+    });
+    console.log(res);
 
     dispatch({
       type: UPDATE_USER,

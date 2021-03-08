@@ -8,6 +8,9 @@ const postSchema = new mongoose.Schema({
   name: {
     type: String,
   },
+  photo: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

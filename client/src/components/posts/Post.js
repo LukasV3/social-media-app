@@ -22,7 +22,11 @@ const Post = ({ post, currentUserPost, deletePost }) => {
     <div className="post">
       {currentUserPost ? deletePostBtn : ""}
       <div className="post__user-info">
-        <div className="post__user-info--img"></div>
+        <img
+          src={`/img/users/${post.photo}`}
+          alt="User"
+          className="post__user-info--img"
+        ></img>
         <p className="post__user-info--name">{post.name}</p>
         <p className="post__user-info--date">
           {renderCreatedAt(new Date(post.createdAt))}

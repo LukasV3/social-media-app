@@ -17,6 +17,7 @@ const CreatePost = ({ currentUser, createPost }) => {
       username: currentUser.username,
       name: currentUser.name,
       content: postText,
+      photo: currentUser.photo,
     });
     setPostText("");
   };
@@ -25,12 +26,17 @@ const CreatePost = ({ currentUser, createPost }) => {
     <div className="create-post">
       <h3 className="create-post__title">Post Something</h3>
       <hr />
-      <div>
+      <div className="create-post__content">
+        <img
+          src={`/img/users/${currentUser?.photo}`}
+          alt="User"
+          className="create-post__img"
+        ></img>
         <textarea
           className="create-post__input"
           value={postText}
           onChange={onInputChange}
-          placeholder="Whats on your mind?"
+          placeholder={`Whats on your mind, ${currentUser?.name}?`}
           autoFocus
         ></textarea>
         <button className="create-post__btn" onClick={onPostClick}>

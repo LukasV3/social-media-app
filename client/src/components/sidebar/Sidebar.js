@@ -41,7 +41,11 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
         className="sidebar__user"
         style={{ border: "1px solid #999" }}
       >
-        <div className="sidebar__user--img"></div>
+        <img
+          src={`/img/users/${currentUser?.photo}`}
+          alt="User"
+          className="sidebar__user--img"
+        ></img>
         <p className="sidebar__user--name">
           {currentUser?.name || currentUser?.username}
         </p>

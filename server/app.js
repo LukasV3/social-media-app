@@ -11,14 +11,13 @@ const viewRouter = require("./routes/viewRoutes");
 
 const app = express();
 
-app.set("view engine", "ejs");
-
 // CORS
 app.use(cors());
 app.options("*", cors());
 
 // Serving static files
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 
 // Reading data from req.body
 app.use(express.json({ limit: "10kb" }));

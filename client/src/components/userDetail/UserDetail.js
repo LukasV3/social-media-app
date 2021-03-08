@@ -7,14 +7,29 @@ import { updateUser } from "../../actions";
 const UserDetail = ({ currentUser, updateUser }) => {
   const [nameTerm, setNameTerm] = useState(currentUser?.name);
   const [usernameTerm, setUsernameTerm] = useState(currentUser?.username);
+  const [selectedFile, setSelectedFile] = useState({});
 
   const onInputChange = (e, type) => {
-    type === "name" ? setNameTerm(e.target.value) : setUsernameTerm(e.target.value);
+    switch (type) {
+      case "name":
+        return setNameTerm(e.target.value);
+      case "username":
+        return setUsernameTerm(e.target.value);
+      case "photo":
+        return setSelectedFile(e.target.files[0]);
+      default:
+        return;
+    }
   };
 
   const onSaveSettingsClick = (e) => {
     e.preventDefault();
-    updateUser(currentUser.id, { name: nameTerm, username: usernameTerm });
+    const form = new FormData();
+    form.append("name", nameTerm);
+    form.append("username", usernameTerm);
+    form.append("photo", selectedFile);
+
+    updateUser(currentUser.id, form);
   };
 
   return (
@@ -45,6 +60,18 @@ const UserDetail = ({ currentUser, updateUser }) => {
               value={usernameTerm}
               className="user-detail__form--input"
               id="username"
+            ></input>
+          </div>
+          <div className="user-detail__form--group">
+            <label className="user-detail__form--label" htmlFor="photo">
+              Choose new photo
+            </label>
+            <input
+              type="file"
+              onChange={(e) => onInputChange(e, "photo")}
+              accept="image/*"
+              className="user-detail__form--input"
+              id="photo"
             ></input>
           </div>
 

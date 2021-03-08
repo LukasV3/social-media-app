@@ -20,6 +20,14 @@ router.patch("/friends/:userId/:decliningId", friendsController.declineFriendReq
 router.delete("/friends/:userId/:deletingId", friendsController.deleteFriend);
 
 router.route("/").get(userController.getAllUsers).post(userController.createUser);
+
+router.patch(
+  "/updateMe/:id",
+  userController.uploadUserPhoto,
+  userController.resizeUserPhoto,
+  userController.updateMe
+);
+
 router
   .route("/:id")
   .get(userController.getUser)

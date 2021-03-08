@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
     },
+    photo: {
+      type: String,
+      default: "default.jpg",
+    },
     friends: [
       {
         type: mongoose.Schema.ObjectId,
