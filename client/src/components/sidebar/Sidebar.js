@@ -42,7 +42,7 @@ const Sidebar = ({ currentUser, auth, getUser }) => {
         style={{ border: "1px solid #999" }}
       >
         <img
-          src={`/img/users/${currentUser?.photo}`}
+          src={`/img/users/default.jpg`}
           alt="User"
           className="sidebar__user--img"
         ></img>

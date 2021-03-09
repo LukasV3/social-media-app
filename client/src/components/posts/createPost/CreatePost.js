@@ -27,11 +27,7 @@ const CreatePost = ({ currentUser, createPost }) => {
       <h3 className="create-post__title">Post Something</h3>
       <hr />
       <div className="create-post__content">
-        <img
-          src={`/img/users/${currentUser?.photo}`}
-          alt="User"
-          className="create-post__img"
-        ></img>
+        <img src={`/img/users/default.jpg`} alt="User" className="create-post__img"></img>
         <textarea
           className="create-post__input"
           value={postText}

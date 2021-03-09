@@ -15,9 +15,21 @@ const multerFilter = (req, file, cb) => {
   }
 };
 
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "../client/public/img/users");
+//   },
+//   filename: (req, file, cb) => {
+//     // user=594042dfgbsld3-343894579234.jpeg
+//     const ext = file.mimetype.split("/")[1];
+//     console.log(`user-${req.params.id}.${ext}`);
+//     cb(null, `user-${req.params.id}.${ext}`);
+//   },
+// });
+
 const upload = multer({
-  // storage: multerStorage,
-  dest: "uploads/",
+  storage: multerStorage,
+  // dest: "../client/public/img/users",
   fileFilter: multerFilter,
 });
 
@@ -26,13 +38,15 @@ module.exports.uploadUserPhoto = upload.single("photo");
 module.exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   if (!req.file) return next();
 
-  req.file.filename = `user-${req.params.id}-${Date.now()}.jpeg`;
-
+  req.file.filename = `user-${req.params.id}.png`;
+  console.log(req.file.filename);
   await sharp(req.file.buffer)
     .resize(500, 500)
     .toFormat("jpeg")
     .jpeg({ quality: 90 })
-    .toFile(`uploads/${req.file.filename}`, (err, info) => console.log(err));
+    .toFile(`../client/public/img/users/${req.file.filename}`, (err, info) =>
+      console.log(err)
+    );
 
   next();
 });
@@ -46,8 +60,6 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 module.exports.updateMe = catchAsync(async (req, res, next) => {
-  console.log(req);
-
   // 1) create error if user POSTs password data
   if (req.body.password) {
     return next(new AppError("This route is not for password updates", 400));
@@ -56,8 +68,6 @@ module.exports.updateMe = catchAsync(async (req, res, next) => {
   // 2) Filtered out unwanted field names that are not allowed to be updated
   // const filteredBody = filterObj(req.body, "name", "username");
   // if (req.file) filteredBody.photo = req.file.filename;
-
-  console.log(req.body);
 
   // 3) Update user document
   const updatedUser = await User.findByIdAndUpdate(req.params.id, filteredBody, {

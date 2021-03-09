@@ -23,7 +23,7 @@ const Post = ({ post, currentUserPost, deletePost }) => {
       {currentUserPost ? deletePostBtn : ""}
       <div className="post__user-info">
         <img
-          src={`/img/users/${post.photo}`}
+          src={`/img/users/default.jpg`}
           alt="User"
           className="post__user-info--img"
         ></img>
