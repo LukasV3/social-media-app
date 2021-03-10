@@ -6,8 +6,7 @@ import "./styles.scss";
 import AuthForm from "../authForm/AuthForm";
 
 const Login = ({ login }) => {
-  const logUserIn = (e, formValues) => {
-    e.preventDefault();
+  const logUserIn = (formValues) => {
     login(formValues);
   };
 

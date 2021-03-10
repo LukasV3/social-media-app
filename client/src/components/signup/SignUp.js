@@ -6,8 +6,7 @@ import "./styles.scss";
 import AuthForm from "../authForm/AuthForm";
 
 const SignUp = ({ signup }) => {
-  const signUserUp = (e, formValues) => {
-    e.preventDefault();
+  const signUserUp = (formValues) => {
     signup(formValues);
   };
   return <AuthForm type="Sign Up" onSubmitButtonClick={signUserUp} />;

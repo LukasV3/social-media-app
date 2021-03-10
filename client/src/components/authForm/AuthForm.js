@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.scss";
 
 import history from "../../history";
 
 const AuthForm = ({ type, onSubmitButtonClick }) => {
-  const [nameTerm, setNameTerm] = useState("");
-  const [usernameTerm, setUsernameTerm] = useState("");
-  const [passwordTerm, setPasswordTerm] = useState("");
+  const [values, setValues] = useState({ name: "", username: "", password: "" });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const onInputChange = (e, type) => {
-    // type === "username"
-    //   ? setUsernameTerm(e.target.value)
-    //   : setPasswordTerm(e.target.value);
-
-    switch (type) {
-      case "name":
-        return setNameTerm(e.target.value);
-      case "username":
-        return setUsernameTerm(e.target.value);
-      case "password":
-        return setPasswordTerm(e.target.value);
-      default:
-        return;
+  useEffect(() => {
+    if (isSubmitted) {
+      console.log(values);
+      onSubmitButtonClick(values);
     }
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
+
+  const onSubmitClick = (e) => {
+    e.preventDefault();
+    setIsSubmitted(true);
   };
 
   const onAccountButtonClick = (e) => {
@@ -37,8 +36,9 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
     return (
       <input
         type="text"
-        value={nameTerm}
-        onChange={(e) => onInputChange(e, "name")}
+        value={values.name}
+        onChange={handleInputChange}
+        name="name"
         className="authForm__form--input"
         placeholder="Name"
         required
@@ -56,8 +56,9 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
 
           <input
             type="text"
-            value={usernameTerm}
-            onChange={(e) => onInputChange(e, "username")}
+            value={values.username}
+            onChange={handleInputChange}
+            name="username"
             className="authForm__form--input"
             placeholder="Username"
             required
@@ -65,8 +66,9 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
 
           <input
             type="password"
-            value={passwordTerm}
-            onChange={(e) => onInputChange(e, "password")}
+            value={values.password}
+            onChange={handleInputChange}
+            name="password"
             className="authForm__form--input"
             placeholder="Password"
             required
@@ -74,13 +76,7 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
 
           <button
             className="authForm__form--submit-btn"
-            onClick={(e) =>
-              onSubmitButtonClick(e, {
-                name: nameTerm,
-                username: usernameTerm,
-                password: passwordTerm,
-              })
-            }
+            onClick={(e) => onSubmitClick(e)}
           >
             {type}
           </button>
