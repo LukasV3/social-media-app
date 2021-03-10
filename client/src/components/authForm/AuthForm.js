@@ -3,16 +3,42 @@ import "./styles.scss";
 
 import history from "../../history";
 
+const validateForm = (values) => {
+  let errors = {};
+
+  if (!values.name.trim()) {
+    errors.name = "Please enter a name";
+  }
+  if (!values.username.trim()) {
+    errors.username = "Please enter a username";
+  }
+  if (values.password.length < 8) {
+    errors.password = "Password must be at least 8 characters long";
+  }
+
+  return errors;
+};
+
 const AuthForm = ({ type, onSubmitButtonClick }) => {
   const [values, setValues] = useState({ name: "", username: "", password: "" });
+  const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    if (isSubmitted) {
-      console.log(values);
+    if (!isSubmitted) return;
+
+    // When logging in dont need to validate input as user already has an account
+    if (type === "Log In") {
       onSubmitButtonClick(values);
     }
-  });
+
+    // when signing up inputs need to be valdidated
+    if (type === "Sign Up" && Object.keys(errors).length === 0) {
+      onSubmitButtonClick(values);
+    }
+
+    setIsSubmitted(false);
+  }, [isSubmitted, values, errors, onSubmitButtonClick, type]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,30 +47,37 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
 
   const onSubmitClick = (e) => {
     e.preventDefault();
+    setErrors(validateForm(values));
     setIsSubmitted(true);
   };
 
-  const onAccountButtonClick = (e) => {
-    e.preventDefault();
-
+  const onAccountButtonClick = () => {
     return type === "Log In" ? history.push("/signup") : history.push("/");
   };
 
   const renderNameInput = () => {
-    if (type === "Log In") return;
+    if (type === "Sign Up") {
+      return (
+        <div className="authForm__form--group">
+          {renderError(type, "name")}
+          <input
+            type="text"
+            value={values.name}
+            onChange={handleInputChange}
+            name="name"
+            className="authForm__form--input"
+            placeholder="Name"
+            autoFocus
+          />
+        </div>
+      );
+    }
+  };
 
-    return (
-      <input
-        type="text"
-        value={values.name}
-        onChange={handleInputChange}
-        name="name"
-        className="authForm__form--input"
-        placeholder="Name"
-        required
-        autoFocus
-      />
-    );
+  const renderError = (type, elName) => {
+    if (type === "Sign Up") {
+      return <p className="authForm__form--error">{errors[elName]}</p>;
+    }
   };
 
   return (
@@ -54,34 +87,39 @@ const AuthForm = ({ type, onSubmitButtonClick }) => {
         <form className="authForm__form">
           {renderNameInput()}
 
-          <input
-            type="text"
-            value={values.username}
-            onChange={handleInputChange}
-            name="username"
-            className="authForm__form--input"
-            placeholder="Username"
-            required
-          />
+          <div className="authForm__form--group">
+            {renderError(type, "username")}
+            <input
+              type="text"
+              value={values.username}
+              onChange={handleInputChange}
+              name="username"
+              className="authForm__form--input"
+              placeholder="Username"
+            />
+          </div>
 
-          <input
-            type="password"
-            value={values.password}
-            onChange={handleInputChange}
-            name="password"
-            className="authForm__form--input"
-            placeholder="Password"
-            required
-          />
+          <div className="authForm__form--group">
+            {renderError(type, "password")}
+            <input
+              type="password"
+              value={values.password}
+              onChange={handleInputChange}
+              name="password"
+              className="authForm__form--input"
+              placeholder="Password"
+            />
+          </div>
 
-          <button
-            className="authForm__form--submit-btn"
-            onClick={(e) => onSubmitClick(e)}
-          >
+          <button className="authForm__form--submit-btn" onClick={onSubmitClick}>
             {type}
           </button>
         </form>
-        <button className="authForm__toggle-btn" onClick={onAccountButtonClick}>
+        <button
+          type="button"
+          className="authForm__toggle-btn"
+          onClick={onAccountButtonClick}
+        >
           {`${type === "Log In" ? "Dont" : "Already"} have an account? `}
         </button>
       </div>

@@ -13,6 +13,7 @@
     margin: 0 1.5rem;
     border-radius: 1rem;
     margin-bottom: 5%;
+    width: 28rem;
   }
 
   &__title {
@@ -26,13 +27,25 @@
     align-items: center;
     justify-content: center;
 
+    &--error {
+      color: red;
+      text-align: left;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    &--group {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+
     &--input {
-      width: 82%;
+      width: 100%;
       padding: 0.75rem 1.25rem;
       font-size: 1.25rem;
       border-radius: 0.5rem;
       border: 1px solid #979797;
-      margin-bottom: 1.5rem;
     }
 
     &--submit-btn {
